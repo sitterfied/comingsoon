@@ -18,7 +18,19 @@
       <div id="inner" style="display: inline-block; top: -50%; position: relative; margin-left: auto; margin-right: auto;">
       <!-- Save for Web Slices (Email-PreLaunchInvited_Clean.psd) -->
 
-      <div id="box" style="margin-left: 10px; width: 500px; padding-left: 30px; padding-right: 30px; -moz-border-radius: 3px 3px 0 0 / 4px 4px 0 0; -webkit-border-radius: 3px 3px 0 0 / 4px 4px 0 0; border-radius: 3px 3px 0 0 / 4px 4px 0 0; -moz-background-clip: padding; -webkit-background-clip: padding-box; background-clip: padding-box; background-color: #fff; -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15); -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15); box-shadow: 0 1px 2px rgba(0,0,0,.15);">
+      <div id="box" style="margin-left: 9px; width: 500px;
+                           padding-left: 30px; padding-right: 32px;
+                           -moz-border-radius: 3px 3px 0 0 / 4px 4px 0
+                           0; -webkit-border-radius: 3px 3px 0 0 / 4px
+                           4px 0 0; border-radius: 3px 3px 0 0 / 4px
+                           4px 0 0; -moz-background-clip: padding;
+                           -webkit-background-clip: padding-box;
+                           background-clip: padding-box;
+                           background-color: #fff;
+                           background-size:562px 1px;
+                           background-image: url('{{full_static_url}}email/images/middle.png')
+                           ">
+
         <img src="{{full_static_url}}email/images/toplogo.jpg" alt=""><br><img id="icon" src="{{full_static_url}}email/images/{%block iconpath%}heartletter.png{% endblock iconpath %}" alt="" style="margin-left: auto; margin-right: auto; height: 80px; width: 90px; display: block;">
         {% block message %}
         {% endblock message %}

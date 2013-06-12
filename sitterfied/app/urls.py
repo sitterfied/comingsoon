@@ -12,8 +12,6 @@ urlpatterns = patterns('app.views',
     url(r'^$', 'index', name="home"),
     url(r'^refer/(?P<interest_id>\d+)?$', 'referral_tracking', name="referral_tracking"),
     url(r'^about/$', TemplateView.as_view(template_name='howitworks.html'), name="howitworks"),
-    url(r'^email/$', StaticView.as_view(template_name='invitation_email.html'), name="email"),
+    url(r'^email/$', StaticView.as_view(template_name='email_base.html'), name="email"),
     url(r'^invite/(?P<referred_by>\d+)$', 'index'),
 )
-
-
