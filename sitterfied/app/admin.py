@@ -15,7 +15,7 @@ class ComingSoonInterestAdmin(admin.ModelAdmin):
 
     search_fields = ('name', 'email', 'referred_by', 'zip')
     def number_referred_by(self, obj):
-        return ComingSoonIntrest.objects.filter(referred_by=obj).count()
+        return ComingSoonInterest.objects.filter(referred_by=obj).count()
 
 admin.site.register(ComingSoonInterest, ComingSoonInterestAdmin)
 
