@@ -9,8 +9,11 @@ from .models import *
 
 
 class ComingSoonInterestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent_or_sitter', 'zip', 'email', 'referred_by', )
+    list_display = ('name', 'parent_or_sitter', 'zip', 'email', 'referred_by', 'number_referred_by')
 
+    list_filter = ('parent_or_sitter', 'zip')
+
+    search_fields = ('name', 'email', 'referred_by', 'zip')
     def number_referred_by(self, obj):
         return ComingSoonIntrest.objects.filter(referred_by=obj).count()
 
