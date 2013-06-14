@@ -6,7 +6,16 @@ from .models import *
 
 
 
-admin.site.register(ComingSoonInterest)
+
+
+class ComingSoonInterestAdmin(admin.ModelAdmin):
+    list_display = ('name', 'parent_or_sitter', 'zip', 'email', 'referred_by', )
+
+    def number_referred_by(self, obj):
+        return ComingSoonIntrest.objects.filter(referred_by=obj).count()
+
+admin.site.register(ComingSoonInterest, ComingSoonInterestAdmin)
+
 
 
 
