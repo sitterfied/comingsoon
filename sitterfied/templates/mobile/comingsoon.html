@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Coming soon</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Favicon -->
+	<link href="{{STATIC_URL}}mobile/images/favicon.ico" rel="icon" type="image/x-icon">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/jquery.fancybox.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/style.css">
+
+	<!-- JavaScript -->
+	<!--[if lt IE 9]><script src="{{STATIC_URL}}mobile/js/ie9.js">IE7_PNG_SUFFIX=".png";</script><![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
+	<script src="{{STATIC_URL}}mobile/js/custom.js"></script>
+</head>
+<body class="coming_soon">
+
+<!-- cs header -->
+<header class="cs_header">
+	<div class="wraper">
+		<p><a href="#"><img src="{{STATIC_URL}}mobile/images/logo2.png" alt="" /></a></p>
+		<p>Friend Verified. Search Simplified.</p>
+		<h1>Find and book <br />friend-verified <br />babysitters.</h1>
+	</div>
+</header>
+<!-- /cs header -->
+
+<!-- cs video -->
+<div class="cs_video">
+	<div class="wraper">
+		<p>We’re launching soon. <br /><a href="#">Learn more about us here.</a></p>
+		<div class="video_wrap"><a class="video fancybox.iframe" href="http://www.youtube.com/embed/uLzpzjanHAY?autoplay=1"><img src="{{STATIC_URL}}mobile/images/icons/play.png" alt="" /></a></div>
+		<p>Watch our video. <br />Then sign up and invite your friends for early access!</p>
+	</div>
+</div>
+<!-- /cs video -->
+
+<!-- cs register_form -->
+<div class="cs_register_form">
+	<div class="wraper">
+		<form method="post" action="#">
+			<ul>
+				<li><input type="checkbox" name="parsit" id="parent" /><label for="parent">Parent</label><input type="checkbox" name="parsit" id="sitter" /><label for="sitter">Sitter</label></li>
+				<li><input type="text" value="First & Last Name" /></li>
+				<li><input class="ok" type="text" value="Email address" /></li>
+				<li><input type="text" value="Zip Code" /></li>
+				<li><input type="submit" value="KEEP ME POSTED" /></li>
+				<li>We respect your privacy. You can unsubscribe at any time.</li>
+			</ul>
+		</form>
+	</div>
+</div>
+<!-- /cs register_form -->
+
+<!-- cs after_submit_form -->
+<div class="cs_after_submit_form">
+	<div class="wraper">
+		<form method="post" action="#">
+			<p>Thanks Ben! Want Priority Access?</p>
+			<p><strong>Sign up 5 friends and we’ll invite you all to try us out before the official launch. Use the link in your welcome email to track your progress.</strong></p>
+			<div class="copy_wrap"><input type="text" value="http://www.sitterfied.com/invite53" /><input type="submit" value="COPY" /></div>
+			<div class="tabs_wrap">
+				<ul class="tab_select clear">
+					<li><a href="#tab-1">Share with your network</a></li>
+					<li><a href="#tab-2">Share by email</a></li>
+				</ul>
+				<div class="tab_content" id="tab-1">
+					<ul>
+						<li><textarea>Friend verified. Search Simplified. @sitterfied Sign up for free: http://st.tt/i/a8271</textarea></li>
+						<li><a class="button blue" href="#"><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt="" />Share on Facebook</a><br /><a class="button blue" href="#"><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt="" />Tweet on Twitter</a></li>
+					</ul>
+				</div>
+				<div class="tab_content" id="tab-2">
+					<ul>
+						<li>Add from address book</li>
+						<li><input type="text" value="Enter email addresses (separate with a comma)" /></li>
+						<li><textarea>Friend verified. Search Simplified. @sitterfied Sign up for free: http://st.tt/i/a8271</textarea></li>
+						<li><input type="submit" value="SEND" /></li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+<!-- /cs after_submit_form -->
+
+<!-- cs footer -->
+<footer class="cs_footer">
+	<div class="wraper">
+		<p>Check out <a href="#">our blog</a><br />Follow us. Say hello.</p>
+		<ul class="clear">
+			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/facebook2.png" alt="" /></a></li>
+			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/twitter2.png" alt="" /></a></li>
+			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/email2.png" alt="" /></a></li>
+		</ul>
+	</div>
+</footer>
+<!-- /cs footer -->
+
+</body>
+</html>

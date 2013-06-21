@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>referraltracking</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Favicon -->
+	<link href="{{STATIC_URL}}mobile/images/favicon.ico" rel="icon" type="image/x-icon">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/jquery.fancybox.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/style.css">
+
+	<!-- JavaScript -->
+	<!--[if lt IE 9]><script src="js/ie9.js">IE7_PNG_SUFFIX=".png";</script><![endif]-->
+    {% load compressed %}
+    {% compressed_js 'app' %}
+
+	<script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
+	<script src="{{STATIC_URL}}mobile/js/custom.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<header class="header" id="back_2top">
+	<div class="wraper">
+		<!-- top menu -->
+		<nav>
+			<ul>
+				<li><a href="{%url "howitworks" %}">How it Works</a></li>
+				<li><a href="http://sitterfied.tumblr.com/">Blog</a></li>
+				<li><a href="http://www.facebook.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/facebook.png" alt="" /></a><a href="http://www.twitter.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/twitter.png" alt="" /></a><a href="mailto:hello@sitterfied.com"><img src="{{STATIC_URL}}mobile/images/icons/email.png" alt="" /></a></li>
+			</ul>
+		</nav>
+		<!-- /top menu -->
+		<p><a href="{% url "home" %}" class="logo"><img src="{{STATIC_URL}}mobile/images/logo.png" alt="" /></a></p>
+	</div>
+</header>
+<!-- /header -->
+
+<!-- container -->
+<div class="container">
+	<div class="wraper">
+		<!-- referral_tracking -->
+		<div class="referral_tracking">
+
+			<div class="progress_bar">
+				<h2>Invite your friends to <span>Sitterfied</span></h2>
+				<p><img src="{{STATIC_URL}}mobile/images/icons/heart3.png" alt="" /></p>
+				<h4>Build a team and gain early access</h4>
+				<p>We’re confident you’ll like Sitterfied and we think your friends will too. Help us spread the word, track your referrals here and we’ll let you know when it’s time to come aboard!</p>
+                {% if referrals|length == 0 %}
+				<div class="friends_bar step1">
+					<span class="filled">&nbsp;</span>5 friends needed for early access
+				</div>
+				<p>Thanks for joining!</p>
+                {% elif referrals|length == 1 %}
+				<div class="friends_bar step2">
+					<span class="filled">&nbsp;</span>4 friends needed for early access
+				</div>
+				<p>One friend has joined your team</p>
+                {% elif referrals|length == 2 %}
+				<div class="friends_bar step3">
+					<span class="filled">&nbsp;</span>3 more friends needed
+				</div>
+				<p>Two friends have joined your team</p>
+                {% elif referrals|length == 3 %}
+				<div class="friends_bar step4">
+					<span class="filled">&nbsp;</span>2 more friends
+				</div>
+				<p>Three friends have joined your team</p>
+				{% elif referrals|length == 4 %}
+                <div class="friends_bar step5">
+					<span class="filled">&nbsp;</span>One to go!
+				</div>
+				<p>Four friends have joined your team</p>
+                {% elif referrals|length == 4 %}
+				<div class="friends_bar finale_step">
+					Congratulations! Check your email for your welcome pack.
+				</div>
+                {% endif %}
+			</div>
+
+			<div class="share_block">
+				<div class="tabs_wrap">
+					<ul class="tab_select clear">
+						<li><a href="#tab-1">Share with your network</a></li>
+						<li><a href="#tab-2">Share by email</a></li>
+					</ul>
+					<div class="tab_content" id="tab-1">
+						<ul>
+							<li><textarea id="sharetext">@sitterfied Sign up for free </textarea></li>
+							<li><a class="button blue" onclick="facebook()" href="#"><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt=""  />Share on Facebook</a><br /><a class="button blue" onclick="tweet()" href="#"><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt=""  />Tweet on Twitter</a></li>
+						</ul>
+					</div>
+					<div class="tab_content" id="tab-2">
+<form id="invite_email_form">
+						<ul>
+						  <a class="cs_import"><li >Add from address book</li></a>
+							<li><input name="email" name="personal_message" type="text" id="contact_list" value="Enter email addresses (separate with a comma)" /></li>
+							<li><textarea name="personal_message">Friend verified. Search Simplified. @sitterfied Sign up for free </textarea></li>
+
+                              <li><input type="submit" value="SEND" /></li>
+						</ul>
+</form>
+
+					</div>
+				</div>
+			</div>
+
+			<p>or share this link with friends:</p>
+			<div class="copy_wrap"><input type="text" value="{{request.get_host}}{{refer_url}}" /><input type="submit" data-clipboard-text="{{request.get_host}}{{refer_url}}"  class="copy-button" value="COPY" /></div>
+
+		</div>
+		<!-- /referral_tracking -->
+	</div>
+</div>
+
+<!-- footer -->
+<footer class="footer">
+	<div class="wraper">
+		<a href="#"><img src="{{STATIC_URL}}mobile/images/logo_bottom.png" alt="" /></a>
+	</div>
+</footer>
+<!-- /footer -->
+
+<script type="text/javascript">
+refer_url = "{{refer_url}}"
+
+tweet = function() {
+    totweet = $("#sharetext").val()
+    totweet = "Friend%20Verified.%20Search%20Simplified.%20" + encodeURIComponent(totweet)
+    var link="url=" + window.location.origin + refer_url
+    tweet_link = "https://twitter.com/share?" + link + "&related=sitterfied&text=" + totweet
+    newwindow=window.open(tweet_link,'tweet this','height=260,width=510');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+facebook = function(){
+    toshare = $("#sharetext").val()
+    toshare = encodeURIComponent(toshare)
+
+    app_id="app_id=141907389308388"
+    link="link=" + window.location.origin + refer_url
+
+    picture="picture=" + window.location.origin + "{{STATIC_URL}}img/heart.png"
+    redirect_uri="redirect_uri=https://www.facebook.com"
+    name="name=Sitterfied"
+    caption="caption=Friend%20Verified.%20Search%20Simplified"
+
+    description="description=" + toshare
+
+    share_link =  "http://www.facebook.com/dialog/feed?" + app_id + "&" + link +  "&" + name + "&" + caption + "&" + description +  "&" + redirect_uri +  "&" + picture
+    newwindow=window.open(share_link,'share this','height=500,width=1200');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+$(function(){
+    var clip = new ZeroClipboard( $(".copy-button"), {
+        moviePath: "{{STATIC_URL}}swf/ZeroClipboard.swf"
+    });
+    clip.on( 'complete', function(client, args) {
+        cc = $('.copied')
+        cc.fadeIn(500)
+        setTimeout(function(){
+            cc.fadeOut(500)
+        }, 3000)
+    });
+
+
+    $("#invite_email_form").submit(function(e){
+        var data = $(this).serialize();
+        e.preventDefault();
+        $.ajax({
+            url: "{% url 'invite_email_submit' %}",
+            type: "POST",
+            data: data,
+        }).success(function(data){
+            $("#thanksforemail").html("Email sent. Thanks for sharing!")
+            setTimeout(function(){
+               $("#thanksforemail").html("&nbsp;")
+            }, 3000)
+
+
+        })
+        return false
+    });
+
+
+
+})
+
+</script>
+
+      <script type="text/javascript">
+        function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+                            var cookie = jQuery.trim(cookies[i]);
+                            // Does this cookie string begin with the name we want?
+                            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                            cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                            break;
+                            }
+                            }
+                            }
+                            return cookieValue;
+                            }
+                            var csrftoken = getCookie('csrftoken');
+                            function csrfSafeMethod(method) {
+                            // these HTTP methods do not require CSRF protection
+                            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+                            }
+                            function sameOrigin(url) {
+                            // test that a given url is a same-origin URL
+                            // url could be relative or scheme relative or absolute
+                            var host = document.location.host; // host + port
+                            var protocol = document.location.protocol;
+                            var sr_origin = '//' + host;
+                            var origin = protocol + sr_origin;
+                            // Allow absolute or scheme relative URLs to same origin
+                            return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+                            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+                            // or any other URL that isn't scheme relative or absolute i.e relative.
+                            !(/^(\/\/|http:|https:).*/.test(url));
+                            }
+                            $.ajaxSetup({
+                            beforeSend: function(xhr, settings) {
+                            if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+                            // Send the token to same-origin, relative URLs only.
+                            // Send the token only if the method warrants CSRF protection
+                            // Using the CSRFToken value acquired earlier
+                            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+                            }
+                            }
+                            });
+                            </script>
+
+<script type="text/javascript" src="https://api.cloudsponge.com/address_books.js"></script>
+<script type="text/javascript" charset="utf-8">
+var csPageOptions = {
+  domain_key:"VF375LA5P8JG2MRDXRHF",
+  textarea_id:"contact_list",
+  include: ['email'],
+};
+</script>
+
+</body>
+
+</html>

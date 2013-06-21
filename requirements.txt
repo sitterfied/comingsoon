@@ -43,3 +43,5 @@ django_smtp_ssl
 #django-haystack
 django-mandrill
 https://github.com/django/django-localflavor-us/zipball/master
+
+-e git+https://github.com/mliu7/django-minidetector.git#egg=minidetector

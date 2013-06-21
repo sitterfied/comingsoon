@@ -5,6 +5,9 @@ from django.http import HttpResponse
 from django.core.mail import send_mail
 from django.views.decorators.csrf import csrf_exempt
 
+from django.template import RequestContext
+from django.shortcuts import render_to_response
+
 from annoying.decorators import render_to, ajax_request
 
 from django.views.decorators.http import require_POST
@@ -30,11 +33,22 @@ def send_html_email(subject, frm, address, text, html):
 
 
 
-@render_to('comingsoon.html')
+def is_mobile(request):
+    """this is supposed to be handled by the middleware. lame"""
+    return request.is_simple_device
+
+
+
 def index(request, referred_by=None):
     if request.session.get('id', False):
         pass #return HttpResponseRedirect("/referrals")
-    return {"referred_by":referred_by}
+    if is_mobile(request):
+        template = 'mobile/comingsoon.html'
+    else:
+        template = 'comingsoon.html'
+    return render_to_response(template,
+                              {"referred_by":referred_by},
+                              context_instance=RequestContext(request))
 
 
 @csrf_exempt
@@ -108,7 +122,6 @@ def invite_email_submit(request):
 
     return {}
 
-@render_to('referraltracking.html')
 def referral_tracking(request, interest_id=None):
     interest_id = interest_id or request.session.get('id', False)
     if not interest_id:
@@ -119,7 +132,14 @@ def referral_tracking(request, interest_id=None):
     if len(referrals) > 5:
         referrals = range(5)
     padding_left = len(referrals) * 75
-    return {"refer_url":refer_url, "referrals":referrals, 'padding_left':padding_left}
+
+    if is_mobile(request):
+        template = 'mobile/referraltracking.html'
+    else:
+        template = 'referraltracking.html'
+    return render_to_response(template,
+                              {"refer_url":refer_url, "referrals":referrals, 'padding_left':padding_left},
+                              context_instance=RequestContext(request))
 
 
 @render_to('unsubscribe.html')
@@ -147,3 +167,11 @@ class StaticView(TemplateView):
         context = super(StaticView, self).get_context_data(**kwargs)
         context['full_static_url'] = self.request.build_absolute_uri(settings.STATIC_URL)
         return context
+
+class MobileView(TemplateView):
+    template_name = "howitworks.html"
+    def get_template_names(self):
+        if is_mobile(self.request):
+            return ["mobile/" + self.template_name]
+        else:
+            return [self.template_name]

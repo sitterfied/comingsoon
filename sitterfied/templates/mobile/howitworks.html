@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>How it works</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+	<!-- Mobile Specific Meta -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<!-- Favicon -->
+	<link href="{{STATIC_URL}}mobile/images/favicon.ico" rel="icon" type="image/x-icon">
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/jquery.fancybox.css">
+	<link rel="stylesheet" href="{{STATIC_URL}}mobile/style/style.css">
+
+	<!-- JavaScript -->
+	<!--[if lt IE 9]><script src="js/ie9.js">IE7_PNG_SUFFIX=".png";</script><![endif]-->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+	<script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
+	<script src="{{STATIC_URL}}mobile/js/custom.js"></script>
+</head>
+<body>
+
+<!-- header -->
+<header class="header" id="back_2top">
+	<div class="wraper">
+		<!-- top menu -->
+	<div class="wraper">
+		<!-- top menu -->
+		<nav>
+			<ul>
+				<li><a href="{%url "howitworks" %}">How it Works</a></li>
+				<li><a href="http://sitterfied.tumblr.com/">Blog</a></li>
+				<li><a href="http://www.facebook.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/facebook.png" alt="" /></a><a href="http://www.twitter.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/twitter.png" alt="" /></a><a href="mailto:hello@sitterfied.com"><img src="{{STATIC_URL}}mobile/images/icons/email.png" alt="" /></a></li>
+			</ul>
+		</nav>
+		<!-- /top menu -->
+		<p><a href="{% url "home" %}" class="logo"><img src="{{STATIC_URL}}mobile/images/logo.png" alt="" /></a></p>
+	</div>
+</header>
+<!-- /header -->
+
+<!-- container -->
+<div class="container">
+	<div class="wraper">
+		<!-- hiw_block -->
+		<div class="hiw_block">
+			<h3>We exist so that parents get out and sitters get jobs</h3>
+			<p><img src="{{STATIC_URL}}mobile/images/trust.png" alt="" /></p>
+			<p>It’s ridiculously simple...</p>
+			<ul>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img.png" alt="" />
+					<h5>Search</h5>
+					<p>Enter a date and time and let us show you who’s available and how you’re connected.</p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img2.png" alt="" />
+					<h5>Find</h5>
+					<p>View the profiles of available sitters. See which of your friends have hired them and if they’d hire them again.</p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img3.png" alt="" />
+					<h5>Book</h5>
+					<p>Click ‘Book’. We’ll handle the requests, confirmations and reminders via email and text</p>
+				</li>
+			</ul>
+			<div class="video_wrap"><a class="video fancybox.iframe" href="http://www.youtube.com/embed/uLzpzjanHAY?autoplay=1"><img src="{{STATIC_URL}}mobile/images/video.png" alt="" /></a><br /><a class="button orange arrow" href="{% url "home"%}">i’m ready. Sign me up!</a></div>
+		</div>
+		<!-- /hiw_block -->
+	</div>
+</div>
+
+<div class="more"><a href="#need_more">NEED MORE?</a></div>
+
+<!-- container -->
+<div class="container">
+	<div class="wraper">
+		<!-- hiw_block -->
+		<div class="hiw_block" id="need_more">
+			<ul class="no_border">
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img4.png" alt="" />
+					<h6>Safety and trust</h6>
+					<p>Safety is everything to us. Sitterfied was built with our own kids in mind. Multiple verification points (social connections, reviews, recommendations, background checks) and privacy measures allow you to connect, meet and hire.</p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img5.png" alt="" />
+					<h6>Friend verified</h6>
+					<p>How many times have you asked a friend for a sitter recommendation? Now Sitterfied does the work for you. Access your existing social networks (like Facebook) to see who knows, who’s hired, and who recommends the sitters you find.</p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img6.png" alt="" />
+					<h6>Search simplified</h6>
+					<p>Enter a date and time to find and book a trustworthy sitter in minutes.</p>
+				</li>
+			</ul>
+			<div class="button_wrap"><a class="button orange arrow" href="{% url "home"%}">sign up now</a></div>
+			<ul>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img7.png" alt="" />
+					<h6>Great sitters at the drop of a hat?</h6>
+					<p>Challenge accepted! We help you grow your sitter dream team so if one’s not available, there’s always another who is. </p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img8.png" alt="" />
+					<h6>Your personal assistant</h6>
+					<p>We’ll help you stay on top of your bookings with calendar updates, timely reminders and job details via text, email or both.</p>
+				</li>
+				<li>
+					<img src="{{STATIC_URL}}mobile/images/demo/hiw_img9.png" alt="" />
+					<h6>We’re very mobile</h6>
+					<p>Our site will adapt to any mobile browser. Sitterfied works well and looks great on any smartphone or tablet.</p>
+				</li>
+			</ul>
+			<h3>Help us. Help yourself.<br />Help your friends.</h3>
+			<p><a class="button blue" href="{% url "home"%}"><span class="icon_heart">&nbsp;</span>SIGN ME UP</a></p>
+			<p class="center_right"><img src="{{STATIC_URL}}mobile/images/free.png" alt="" /></p>
+		</div>
+		<!-- /hiw_block -->
+	</div>
+</div>
+<!-- /container -->
+
+<div class="more"><span><a href="#back_2top">BACK TO TOP</a></span></div>
+
+<!-- footer -->
+<footer class="footer">
+	<div class="wraper">
+		<a href="#"><img src="{{STATIC_URL}}mobile/images/logo_bottom.png" alt="" /></a>
+	</div>
+</footer>
+<!-- /footer -->
+
+</body>
+</html>

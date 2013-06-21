@@ -1,7 +1,7 @@
 from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
 from django.views.generic.base import TemplateView
-from .views import StaticView
+from .views import StaticView, MobileView
 
 urlpatterns = patterns('app.views',
     # Examples:
@@ -11,7 +11,7 @@ urlpatterns = patterns('app.views',
     url(r'^cancel-unsubscribe/$', 'cancel_unsubscribe', name='cancel_unsubscribe'),
     url(r'^$', 'index', name="home"),
     url(r'^refer/(?P<interest_id>\d+)?$', 'referral_tracking', name="referral_tracking"),
-    url(r'^about/$', TemplateView.as_view(template_name='howitworks.html'), name="howitworks"),
+    url(r'^about/$', MobileView.as_view(), name="howitworks"),
     url(r'^email/$', StaticView.as_view(template_name='email_base.html'), name="email"),
     url(r'^invite/(?P<referred_by>\d+)$', 'index'),
 )
