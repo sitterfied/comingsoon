@@ -47,10 +47,5 @@ $(function() {
 				return false;
 			});
 	// Coming soon after_submit_form show
-			$('.cs_register_form input[type="submit"]').on('click', function(){
-				$('.cs_register_form, .cs_video').hide();
-				$('.cs_after_submit_form').show();
-				return false;
-			});
 
 });

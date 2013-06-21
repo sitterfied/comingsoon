@@ -18,7 +18,8 @@
 
 	<!-- JavaScript -->
 	<!--[if lt IE 9]><script src="{{STATIC_URL}}mobile/js/ie9.js">IE7_PNG_SUFFIX=".png";</script><![endif]-->
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    {% load compressed %}
+    {% compressed_js 'app' %}
 	<script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
 	<script src="{{STATIC_URL}}mobile/js/custom.js"></script>
 </head>
@@ -37,8 +38,8 @@
 <!-- cs video -->
 <div class="cs_video">
 	<div class="wraper">
-		<p>We’re launching soon. <br /><a href="#">Learn more about us here.</a></p>
-		<div class="video_wrap"><a class="video fancybox.iframe" href="http://www.youtube.com/embed/uLzpzjanHAY?autoplay=1"><img src="{{STATIC_URL}}mobile/images/icons/play.png" alt="" /></a></div>
+		<p>We’re launching soon. <br /><a href="{% url "howitworks" %}">Learn more about us here.</a></p>
+		<div class="video_wrap"><a class="video fancybox.iframe" href="http://www.youtube.com/embed/xhK9wg5UAhE?autoplay=1"><img src="{{STATIC_URL}}mobile/images/icons/play.png" alt="" /></a></div>
 		<p>Watch our video. <br />Then sign up and invite your friends for early access!</p>
 	</div>
 </div>
@@ -47,12 +48,16 @@
 <!-- cs register_form -->
 <div class="cs_register_form">
 	<div class="wraper">
-		<form method="post" action="#">
+	<form method="post" action="#" id="email_form">
+      {% csrf_token %}
 			<ul>
-				<li><input type="checkbox" name="parsit" id="parent" /><label for="parent">Parent</label><input type="checkbox" name="parsit" id="sitter" /><label for="sitter">Sitter</label></li>
-				<li><input type="text" value="First & Last Name" /></li>
-				<li><input class="ok" type="text" value="Email address" /></li>
-				<li><input type="text" value="Zip Code" /></li>
+				<li><input type="checkbox" name="parent_or_sitter" id="parent" checked="true" value="p"/><label for="parent">Parent</label><input type="checkbox" name="parent_or_sitter" id="sitter" value="s" /><label for="sitter">Sitter</label></li>
+
+
+
+				<li><input data-error="Please enter both first and last name" name="name" type="text" pattern="\w+ \w+[\w ]*"placeholder="First & Last Name" required /></li>
+				<li><input name="email" type="text" data-error="Your email address doesn't look right" placeholder="Email Address" required/></li>
+				<li><input name="zip" type="text" pattern="(\d{5}([\-]\d{4})?)" data-error="Please enter a valid US zipcode" placeholder="Zip Code" required /></li>
 				<li><input type="submit" value="KEEP ME POSTED" /></li>
 				<li>We respect your privacy. You can unsubscribe at any time.</li>
 			</ul>
@@ -64,10 +69,10 @@
 <!-- cs after_submit_form -->
 <div class="cs_after_submit_form">
 	<div class="wraper">
-		<form method="post" action="#">
-			<p>Thanks Ben! Want Priority Access?</p>
+		<form method="post" id="invite_email_form" action="#">{% csrf_token %}
+			<p id="thanks">Thanks Ben! Want Priority Access?</p>
 			<p><strong>Sign up 5 friends and we’ll invite you all to try us out before the official launch. Use the link in your welcome email to track your progress.</strong></p>
-			<div class="copy_wrap"><input type="text" value="http://www.sitterfied.com/invite53" /><input type="submit" value="COPY" /></div>
+			<div class="copy_wrap"><input type="text" id="idcode"  /><input type="submit" class="copy-button" value="COPY" /></div>
 			<div class="tabs_wrap">
 				<ul class="tab_select clear">
 					<li><a href="#tab-1">Share with your network</a></li>
@@ -75,15 +80,15 @@
 				</ul>
 				<div class="tab_content" id="tab-1">
 					<ul>
-						<li><textarea>Friend verified. Search Simplified. @sitterfied Sign up for free: http://st.tt/i/a8271</textarea></li>
-						<li><a class="button blue" href="#"><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt="" />Share on Facebook</a><br /><a class="button blue" href="#"><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt="" />Tweet on Twitter</a></li>
+						<li><textarea id="socialtext"></textarea></li>
+						<li><a class="button blue" onclick="facebook()" ><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt="" />Share on Facebook</a><br /><a class="button blue"  onclick="tweet()" ><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt="" />Tweet on Twitter</a></li>
 					</ul>
 				</div>
 				<div class="tab_content" id="tab-2">
 					<ul>
-						<li>Add from address book</li>
-						<li><input type="text" value="Enter email addresses (separate with a comma)" /></li>
-						<li><textarea>Friend verified. Search Simplified. @sitterfied Sign up for free: http://st.tt/i/a8271</textarea></li>
+					  <a class="cs_import"><li>Add from address book</li></a>
+						<li><input type="text" name="email" value="Enter email addresses (separate with a comma)" /></li>
+						<li><textarea name="personal_message" id="emailtext"></textarea></li>
 						<li><input type="submit" value="SEND" /></li>
 					</ul>
 				</div>
@@ -96,15 +101,231 @@
 <!-- cs footer -->
 <footer class="cs_footer">
 	<div class="wraper">
-		<p>Check out <a href="#">our blog</a><br />Follow us. Say hello.</p>
+		<p>Check out <a href="http://sitterfied.tumblr.com/">our blog</a><br />Follow us. Say hello.</p>
 		<ul class="clear">
-			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/facebook2.png" alt="" /></a></li>
-			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/twitter2.png" alt="" /></a></li>
-			<li><a href="#"><img src="{{STATIC_URL}}mobile/images/icons/email2.png" alt="" /></a></li>
+			<li><a href="http://www.facebook.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/facebook2.png" alt="" /></a></li>
+			<li><a href="http://www.twitter.com/sitterfied"><img src="{{STATIC_URL}}mobile/images/icons/twitter2.png" alt="" /></a></li>
+			<li><a href="mailto:hello@sitterfied.com"><img src="{{STATIC_URL}}mobile/images/icons/email2.png" alt="" /></a></li>
 		</ul>
 	</div>
 </footer>
 <!-- /cs footer -->
+<script type="text/javascript">
+    var refer_url;
+
+tweet = function() {
+    totweet = $("#socialtext").val()
+    totweet = encodeURIComponent(totweet)
+    var link="url=" + refer_url
+    tweet_link = "https://twitter.com/share?" + link + "&related=sitterfied&text=" + totweet
+    newwindow=window.open(tweet_link,'tweet this','height=260,width=510');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+facebook = function(){
+    toshare = $("#socialtext").val()
+    toshare = encodeURIComponent(toshare)
+
+    app_id="app_id=141907389308388"
+    link="link=" + refer_url
+
+    picture="picture=" + window.location.origin + "{{STATIC_URL}}img/heart.png"
+    redirect_uri="redirect_uri=https://www.facebook.com"
+    name="name=Sitterfied"
+    caption="caption=Friend%20Verified.%20Search%20Simplified"
+    description="description=" + toshare
+
+    share_link =  "http://www.facebook.com/dialog/feed?" + app_id + "&" + link +  "&" + name + "&" + caption + "&" + description +  "&" + redirect_uri +  "&" + picture
+    newwindow=window.open(share_link,'share this','height=500,width=1200');
+	if (window.focus) {newwindow.focus()}
+	return false;
+}
+
+
+$(document).ready(function(){
+    $("#email_form").submit(function(e){
+	  $('.cs_register_form, .cs_video').hide();
+	  $('.cs_after_submit_form').show();
+
+        var data = $(this).serialize();
+        firstname = $(this.name).val().split(" ")[0]
+        $("#thanks").text("Thanks " + firstname + "! Want Priority Access?" )
+        e.preventDefault();
+        $.ajax({
+            url: "{% url 'comingsoon_email_submit' %}",
+            type: "POST",
+            data: data,
+        }).success(function(data){
+            refer_url = window.location.origin + data.url;
+            $("#idcode").attr('value',refer_url)
+            $(".copy-button").attr("data-clipboard-text", refer_url)
+            $("#referral_link").attr("value", refer_url)
+            val = $("#emailtext").val()
+            $("#emailtext").val("Hey check this out - " + refer_url + "\n")
+            $("#socialtext").val("Hey check this out - " + refer_url + "\n")
+
+        })
+        tell_friends(firstname)
+        return false
+    });
+
+    $("#invite_email_form").submit(function(e){
+        var data = $(this).serialize();
+        e.preventDefault();
+        $.ajax({
+            url: "{% url 'invite_email_submit' %}",
+            type: "POST",
+            data: data,
+        }).success(function(data){
+            $('.loading').hide()
+            thanks = $("#thanksforemail")
+            thanks.fadeIn(500)
+            setTimeout(function(){
+                thanks.fadeOut(500)
+            }, 3000)
+
+        })
+        $('.loading').show()
+        return false
+    });
+
+
+    var clip = new ZeroClipboard( $(".copy-button"), {
+        moviePath: "{{STATIC_URL}}swf/ZeroClipboard.swf"
+    });
+    clip.on( 'complete', function(client, args) {
+        cc = $('.copied')
+        cc.fadeIn(500)
+        setTimeout(function(){
+            cc.fadeOut(500)
+        }, 3000)
+    });
+
+
+    $("#sharewithnetwork").click(function(e){
+        if (!$("#invitebynetwork").is("visible")) {
+            $(this).switchClass("", "active-share")
+            $("#sharewithemail").switchClass("active-share", "")
+            $("#carrotimage").switchClass("offset7", "offset2")
+            $("#invitebyemail").fadeOut(500, function(){
+                $("#invitebynetwork").fadeIn(500)
+            })
+
+        }
+        e.preventDefault();
+        e.stopPropagation();
+
+    });
+    $("#sharewithemail").click(function(e){
+        if (!$("#invitebyemail").is("visible")) {
+            $(this).switchClass("", "active-share")
+            $("#sharewithnetwork").switchClass("active-share", "")
+            $("#carrotimage").switchClass("offset2", "offset7")
+            $("#invitebynetwork").fadeOut(500, function(){
+                $("#invitebyemail").fadeIn(500)
+            })
+
+        }
+        e.preventDefault();
+        e.stopPropagation();
+    });
+
+    $("#front_email_input").on('blur', function(){
+        $(this).mailcheck({
+            suggested: function(element, suggestion){
+                click_suggestion = $('<p>did you mean <a href="#">' + suggestion.full + "</a></p>")
+                click_suggestion.children('a').click(function(){
+                    $(element).val(suggestion.full)
+                    $(element).siblings('#email_suggestion').slideUp()
+                })
+                $(element).siblings('#email_suggestion').html(click_suggestion).slideDown()
+            },
+            empty: function(element){
+                $(element).siblings('#email_suggestion').slideUp()
+            }
+        })
+    })
+
+});
+tell_friends = function(firstname){
+    $(".hrrow").css("visibility", "hidden");
+    function capitaliseFirstLetter(string)
+    {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
+    $(".thanksdiv").fadeOut(500, function(){
+        $(".signupspacer").hide()
+
+        $(".thanksdiv").html("<h2 class='semi-bold'>Thanks " + capitaliseFirstLetter(firstname) + "!</h2>").fadeIn().removeClass('margintop')
+    })
+    $("#notharmed").hide()
+    $("#email_form_block").fadeOut(500, function(){
+        $("#share_with_friends_block").show("slide", { direction: "down" }, 500);
+    });
+}
+
+
+
+
+// using jQuery
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+var csrftoken = getCookie('csrftoken');
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+function sameOrigin(url) {
+    // test that a given url is a same-origin URL
+    // url could be relative or scheme relative or absolute
+    var host = document.location.host; // host + port
+    var protocol = document.location.protocol;
+    var sr_origin = '//' + host;
+    var origin = protocol + sr_origin;
+    // Allow absolute or scheme relative URLs to same origin
+    return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
+        (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        // or any other URL that isn't scheme relative or absolute i.e relative.
+        !(/^(\/\/|http:|https:).*/.test(url));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && sameOrigin(settings.url)) {
+            // Send the token to same-origin, relative URLs only.
+            // Send the token only if the method warrants CSRF protection
+            // Using the CSRFToken value acquired earlier
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+
+
+
+</script>
+
+    <!-- Include these scripts to import address books with CloudSponge -->
+    <script type="text/javascript" src="https://api.cloudsponge.com/address_books.js"></script>
+    <script type="text/javascript" charset="utf-8">
+    var csPageOptions = {
+        domain_key:"VF375LA5P8JG2MRDXRHF",
+        textarea_id:"contact_list",
+        include: ['email'],
+    };
+</script>
 
 </body>
 </html>

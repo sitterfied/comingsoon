@@ -1,13 +1,13 @@
 /* CSS Document
 	Resetting browser default styles
-	All 
+	All
 	Header
 		Top menu
 	Container
 		HIW block
 		Referral tracking
 	Coming soon
-	Footer 
+	Footer
 */
 
 
@@ -22,7 +22,7 @@
 @font-face {font-family: 'ProximaNovaCond';src: url('fonts/ProximaNovaCond-Regular.eot');src: local('☺'), url('fonts/ProximaNovaCond-Regular.woff') format('woff'), url('fonts/ProximaNovaCond-Regular.ttf') format('truetype'), url('fonts/ProximaNovaCond-Regular.svg') format('svg');}
 @font-face {font-family: 'ProximaNovaCond';src: url('fonts/ProximaNovaCond-Bold.eot');src: local('☺'), url('fonts/ProximaNovaCond-Bold.woff') format('woff'), url('fonts/ProximaNovaCond-Bold.ttf') format('truetype'), url('fonts/ProximaNovaCond-Bold.svg') format('svg');font-weight: bold;}
 body {height:100%;font:14px 'ProximaNova', Arial, Tahoma, Verdana, Sans-Serif;color:#616161;background:#fff;}
-div, html, body, p, ul, ol, li, a, form, img, table, td, h1, h2, h3, h4, h5, h6, blockquote, header, section, footer, aside, nav, article, figure, figcaption, dt, dd, dl {margin:0;padding:0;} 
+div, html, body, p, ul, ol, li, a, form, img, table, td, h1, h2, h3, h4, h5, h6, blockquote, header, section, footer, aside, nav, article, figure, figcaption, dt, dd, dl {margin:0;padding:0;}
 header, section, footer, aside, nav, article, figure, figcaption {display: block;}
 table {border-collapse:collapse;}
 img {border:none;}
@@ -137,7 +137,10 @@ input[type="submit"] {border-radius:3px;color:#fff;text-transform:uppercase;disp
 .cs_register_form ul li:last-child {border-top:1px dashed #948689;padding-top:15px;margin-top:60px;}
 .cs_register_form ul li label {font-size:16px;font-weight:bold;}
 .cs_register_form ul li input[type="text"] {border:1px solid #969383;min-height:45px;padding:0 20px;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border-radius:4px;box-shadow:rgba(0,0,0,.25) 0 0 6px 0 inset;color:#555;font:15px 'ProximaNova';}
-.cs_register_form ul li input.ok {background:#fff url(../images/icons/ok.png) right center no-repeat;padding-right:50px;}
+.cs_register_form ul li input[type="email"] {border:1px solid #969383;min-height:45px;padding:0 20px;width:100%;-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;border-radius:4px;box-shadow:rgba(0,0,0,.25) 0 0 6px 0 inset;color:#555;font:15px 'ProximaNova';}
+
+.cs_register_form ul li input[type="email"]:valid {background:#fff url(../images/icons/ok.png) right center no-repeat;padding-right:50px;}
+.cs_register_form ul li input[type="text"]:valid {background:#fff url(../images/icons/ok.png) right center no-repeat;padding-right:50px;}
 	/* cs after submit form */
 .cs_after_submit_form {padding:200px 0 50px 0;background:url(../images/icons/heart2.png) center top no-repeat;display:none;}
 .cs_after_submit_form form {margin:0 20px;}
