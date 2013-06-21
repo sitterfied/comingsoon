@@ -35,7 +35,7 @@ def send_html_email(subject, frm, address, text, html):
 
 def is_mobile(request):
     """this is supposed to be handled by the middleware. lame"""
-    return request.is_simple_device
+    return request.mobile
 
 
 
