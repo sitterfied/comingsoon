@@ -56,7 +56,7 @@
 
 
 				<li><input data-error="Please enter both first and last name" name="name" type="text" pattern="\w+ \w+[\w ]*"placeholder="First & Last Name" required /></li>
-				<li><input name="email" type="text" data-error="Your email address doesn't look right" placeholder="Email Address" required/></li>
+				<li><input name="email" type="email" data-error="Your email address doesn't look right" placeholder="Email Address" required/></li>
 				<li><input name="zip" type="text" pattern="(\d{5}([\-]\d{4})?)" data-error="Please enter a valid US zipcode" placeholder="Zip Code" required /></li>
 				<li><input type="submit" value="KEEP ME POSTED" /></li>
 				<li>We respect your privacy. You can unsubscribe at any time.</li>
@@ -80,15 +80,16 @@
 				</ul>
 				<div class="tab_content" id="tab-1">
 					<ul>
-						<li><textarea id="socialtext"></textarea></li>
+						<li><textarea id="socialtext">Join me @sitterfied for free early access! Parents and babysitters meet and book online through friend connections</textarea></li>
 						<li><a class="button blue" onclick="facebook()" ><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt="" />Share on Facebook</a><br /><a class="button blue"  onclick="tweet()" ><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt="" />Tweet on Twitter</a></li>
 					</ul>
 				</div>
 				<div class="tab_content" id="tab-2">
 					<ul>
 					  <a class="cs_import"><li>Add from address book</li></a>
-						<li><input type="text" name="email" value="Enter email addresses (separate with a comma)" /></li>
-						<li><textarea name="personal_message" id="emailtext"></textarea></li>
+						<li><input type="text" name="email" value="Enter email address (separate with comma)" /></li>
+						<li><textarea name="personal_message" id="emailtext">Thought you might be interested in joining me for free early access to test this out
+Join me @sitterfied for free early access! Parents and babysitters meet and book online through friend connections</textarea></li>
 						<li><input type="submit" value="SEND" /></li>
 					</ul>
 				</div>
@@ -162,8 +163,7 @@ $(document).ready(function(){
             $(".copy-button").attr("data-clipboard-text", refer_url)
             $("#referral_link").attr("value", refer_url)
             val = $("#emailtext").val()
-            $("#emailtext").val("Hey check this out - " + refer_url + "\n")
-            $("#socialtext").val("Hey check this out - " + refer_url + "\n")
+            $("#emailtext").val("Hey check this out - " + refer_url + "\n" + val)
 
         })
         tell_friends(firstname)
@@ -179,6 +179,8 @@ $(document).ready(function(){
             data: data,
         }).success(function(data){
             $('.loading').hide()
+
+            $("#tab-2").html("Email sent. Thanks for sharing!")
             thanks = $("#thanksforemail")
             thanks.fadeIn(500)
             setTimeout(function(){

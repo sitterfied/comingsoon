@@ -94,16 +94,17 @@
 					</ul>
 					<div class="tab_content" id="tab-1">
 						<ul>
-							<li><textarea id="sharetext">@sitterfied Sign up for free </textarea></li>
+							<li><textarea id="sharetext">Join me @sitterfied for free early access! Parents and babysitters meet and book online through friend connections</textarea></li>
 							<li><a class="button blue" onclick="facebook()"><img src="{{STATIC_URL}}mobile/images/icons/f.png" alt=""  />Share on Facebook</a><br /><a class="button blue" onclick="tweet()" ><img src="{{STATIC_URL}}mobile/images/icons/t.png" alt=""  />Tweet on Twitter</a></li>
 						</ul>
 					</div>
 					<div class="tab_content" id="tab-2">
-<form id="invite_email_form">
+                      <form id="invite_email_form">
 						<ul>
 						  <a class="cs_import"><li >Add from address book</li></a>
-							<li><input name="email" name="personal_message" type="text" id="contact_list" value="Enter email addresses (separate with a comma)" /></li>
-							<li><textarea name="personal_message">Friend verified. Search Simplified. @sitterfied Sign up for free </textarea></li>
+							<li><input name="email" name="personal_message" type="text" id="contact_list" value="Enter email address (separate with comma)" /></li>
+							<li><textarea name="personal_message">Thought you might be interested in joining me for free early access to test this out - {{request.get_host}}{{refer_url}} Parents and babysitters meet and book online through friend connections.
+                            </textarea></li>
 
                               <li><input type="submit" value="SEND" /></li>
 						</ul>
@@ -133,8 +134,7 @@
 refer_url = "{{refer_url}}"
 
 tweet = function() {
-    totweet = $("#sharetext").val()
-    totweet = "Friend%20Verified.%20Search%20Simplified.%20" + encodeURIComponent(totweet)
+    totweet = encodeURIComponent($("#sharetext").val())
     var link="url=" + window.location.origin + refer_url
     tweet_link = "https://twitter.com/share?" + link + "&related=sitterfied&text=" + totweet
     newwindow=window.open(tweet_link,'tweet this','height=260,width=510');
@@ -183,7 +183,7 @@ $(function(){
             type: "POST",
             data: data,
         }).success(function(data){
-            $("#thanksforemail").html("Email sent. Thanks for sharing!")
+            $("#tab-2").html("Email sent. Thanks for sharing!")
             setTimeout(function(){
                $("#thanksforemail").html("&nbsp;")
             }, 3000)
