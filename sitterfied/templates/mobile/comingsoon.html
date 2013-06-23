@@ -34,6 +34,9 @@
       $.webshims.setOptions({
 	      baseBase: "{{STATIC_URL}}/js/shims"
       });
+      $.webshims.setOptions('forms', {
+	     customMessages: true
+      });
 		//load all polyfill features
 		$.webshims.polyfill();
 
@@ -82,14 +85,15 @@
 	<div class="wraper">
 	<form method="post" action="#" id="email_form">
       {% csrf_token %}
+      <input type="hidden" id="referred_by" name="referred_by" value="{{referred_by}}">
 			<ul>
 				<li><input type="checkbox" name="parent_or_sitter" id="parent" checked="true" value="p"/><label for="parent">Parent</label><input type="checkbox" name="parent_or_sitter" id="sitter" value="s" /><label for="sitter">Sitter</label></li>
 
 
 
-				<li><input data-error="Please enter both first and last name" data-errormessage="Please enter both first and last name" name="name" type="text" pattern="\w+ \w+[\w ]*"placeholder="First & Last Name" required /></li>
-				<li><input name="email" type="email" data-error="Your email address doesn't look right" data-errormessage="Your email address doesn't look right" placeholder="Email Address" required/></li>
-				<li><input name="zip" type="text" pattern="(\d{5}([\-]\d{4})?)" data-error="Please enter a valid US zipcode" data-errormessage="Please enter a valid US zipcode" placeholder="Zip Code" required /></li>
+				<li><input data-error="Please enter both first and last name" customValidationMessage="Please enter both first and last name" name="name" type="text" pattern="\w+ \w+[\w ]*"placeholder="First & Last Name" required /></li>
+				<li><input name="email" type="email" data-error="Your email address doesn't look right" customValidationMessage="Your email address doesn't look right" placeholder="Email Address" required/></li>
+				<li><input name="zip" type="text" pattern="(\d{5}([\-]\d{4})?)" data-error="Please enter a valid US zipcode" customValidationMessage="Please enter a valid US zipcode" placeholder="Zip Code" required /></li>
 				<li><input type="submit" value="KEEP ME POSTED" /></li>
 				<li>We respect your privacy. You can unsubscribe at any time.</li>
 			</ul>
