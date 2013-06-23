@@ -6,13 +6,7 @@ $(function() {
 		    $('.logo img').mouseout(function(){
 		          $(this).attr('src', ('/static/mobile/images/logo.png'));
 		    });
-   	// Video
-			$(".video").fancybox({
-				maxWidth	: 800,
-				maxHeight	: 600,
-				width		: '70%',
-				height		: '70%',
-			});
+
     // show/hide input value
 			$('input[type="text"]').each(function(){
 				var valtxt = $(this).attr('value');

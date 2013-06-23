@@ -20,8 +20,40 @@
 	<!--[if lt IE 9]><script src="{{STATIC_URL}}mobile/js/ie9.js">IE7_PNG_SUFFIX=".png";</script><![endif]-->
     {% load compressed %}
     {% compressed_js 'app' %}
-	<script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
+	<script>
+		// set options for html5shiv
+		if(!window.html5){
+			window.html5 = {};
+		}
+		window.html5.shivMethods = false;
+	</script>
+	<script src="{{STATIC_URL}}mobile/js/modernizr-custom.js"></script>
+
+	<script src="{{STATIC_URL}}mobile/js/polyfiller.js"></script>
+	<script>
+      $.webshims.setOptions({
+	      baseBase: "{{STATIC_URL}}/js/shims"
+      });
+		//load all polyfill features
+		$.webshims.polyfill();
+
+      $(document).ready(function(){
+      	$(".fbvideo").click(function(){
+		$(".fbvideo").fancybox({
+				maxWidth	: 800,
+				maxHeight	: 600,
+				width		: '70%',
+				height		: '70%',
+			});
+      });
+      });
+
+	</script>
+    <script src="{{STATIC_URL}}mobile/js/jquery.fancybox.pack.js"></script>
 	<script src="{{STATIC_URL}}mobile/js/custom.js"></script>
+
+
+
 </head>
 <body class="coming_soon">
 
@@ -39,7 +71,7 @@
 <div class="cs_video">
 	<div class="wraper">
 		<p>We’re launching soon. <br /><a href="{% url "howitworks" %}">Learn more about us here.</a></p>
-		<div class="video_wrap"><a class="video fancybox.iframe" href="http://www.youtube.com/embed/xhK9wg5UAhE?autoplay=1"><img src="{{STATIC_URL}}mobile/images/icons/play.png" alt="" /></a></div>
+		<div class="video_wrap"><a class="fbvideo fancybox.iframe" href="http://www.youtube.com/embed/xhK9wg5UAhE?autoplay=1"><img src="{{STATIC_URL}}mobile/images/icons/play.png" alt="" /></a></div>
 		<p>Watch our video. <br />Then sign up and invite your friends for early access!</p>
 	</div>
 </div>
