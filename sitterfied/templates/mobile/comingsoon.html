@@ -85,7 +85,9 @@
 	<div class="wraper">
 	<form method="post" action="#" id="email_form">
       {% csrf_token %}
+      {% if referred_by %}
       <input type="hidden" id="referred_by" name="referred_by" value="{{referred_by}}">
+      {% endif %}
 			<ul>
 				<li><input type="checkbox" name="parent_or_sitter" id="parent" checked="true" value="p"/><label for="parent">Parent</label><input type="checkbox" name="parent_or_sitter" id="sitter" value="s" /><label for="sitter">Sitter</label></li>
 
@@ -106,7 +108,6 @@
 <div class="cs_after_submit_form">
 	<div class="wraper">
 		<form method="post" id="invite_email_form" action="#">{% csrf_token %}
-          <input type="hidden" id="referred_by" name="referred_by" value="{{referred_by}}">
 			<p id="thanks">Thanks Ben! Want Priority Access?</p>
 			<p><strong>Sign up 5 friends and we’ll invite you all to try us out before the official launch. Use the link in your welcome email to track your progress.</strong></p>
 			<div class="copy_wrap"><input type="text" id="idcode"  /><input type="submit" class="copy-button" value="COPY" /></div>
