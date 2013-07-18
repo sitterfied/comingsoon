@@ -9,11 +9,13 @@ from .models import *
 
 
 class ComingSoonInterestAdmin(admin.ModelAdmin):
-    list_display = ('name', 'parent_or_sitter', 'zip', 'email', 'referred_by', 'number_referred_by')
-
+    list_display = ('name', 'parent_or_sitter', 'zip', 'email', 'referred_by', 'number_referred_by', 'full_invite_url')
     list_filter = ('parent_or_sitter', 'zip')
-
     search_fields = ('name', 'email', 'referred_by', 'zip')
+
+    def full_invite_url(self, obj):
+        return "http://www.sitterfied.com" + obj.invite_url
+
     def number_referred_by(self, obj):
         return ComingSoonInterest.objects.filter(referred_by=obj).count()
 
