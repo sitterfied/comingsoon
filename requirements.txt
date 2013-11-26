@@ -4,7 +4,8 @@ django-pipeline-compass
 
 cssmin
 slimit
-django-grappelli
+#django-grappelli
+-e git+https://github.com/sehmaschine/django-grappelli.git@d1f9246903960f709241918a483755199323ab17#egg=django-grappelli
 #django-filebrowser
 -e git+https://github.com/sehmaschine/django-filebrowser.git#egg=django-filebrowser
 PIL
