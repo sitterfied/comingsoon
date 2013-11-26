@@ -5,7 +5,8 @@ django-pipeline-compass
 cssmin
 slimit
 django-grappelli
-django-filebrowser
+#django-filebrowser
+-e git+https://github.com/sehmaschine/django-filebrowser.git#egg=django-filebrowser
 PIL
 
 #DB

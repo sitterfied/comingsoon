@@ -4,7 +4,8 @@ django-pipeline-compass
 cssmin
 slimit
 django-grappelli
-django-filebrowser
+#django-filebrowser
+-e git+https://github.com/sehmaschine/django-filebrowser.git#egg=django-filebrowser
 
 
 #DB
@@ -47,8 +48,8 @@ django-debug-toolbar
 werkzeug
 sqlparse
 #cheeseshop version doesn't work with 2.7
-https://guppy-pe.svn.sourceforge.net/svnroot/guppy-pe/trunk/guppy
-line_profiler
+guppy
+line_profiler>=1.0b3
 dozer
 
 ipython

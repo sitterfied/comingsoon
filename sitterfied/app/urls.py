@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 # Uncomment the next two lines to enable the admin:
-from django.views.generic.base import TemplateView
+#from django.views.generic.base import TemplateView
 from .views import StaticView, MobileView
 
 urlpatterns = patterns('app.views',
