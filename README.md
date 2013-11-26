@@ -19,8 +19,12 @@ Once the project has been cloned, perform the following operations:
 1. export DJANGO_SETTINGS_MODULE=sitterfied.settings.local
 1. pip install -r requirements-dev.txt
 1. createdb coming-soon
+1. cd sitterfied
 1. python manage.py syncdb
 1. python manage.py migrate
 1. python manage.py createsuperuser
 1. python manage.py collectstatic
+1. cd static_source
+1. compass config compass.rb --sass-dir=sass --css-dir=css --output-style=compressed
+1. compass watch -c compass.rb
 1. python manage.py runserver
